@@ -16,6 +16,11 @@ typedef struct Registro {
     Data entrada;
 } Registro;
 
+typedef struct Lista {
+    struct Elista *inicio;
+    int qtd;
+} Lista;
+
 typedef struct Elista {
     Registro dados;
     struct Elista *prox;
