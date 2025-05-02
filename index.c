@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#define name_size 100
+#define CHAR_SIZE 100
 #define rg_size 10
 
 typedef struct Data {
@@ -10,7 +10,7 @@ typedef struct Data {
 } Data;
 
 typedef struct Registro {
-    char name[name_size];
+    char name[CHAR_SIZE];
     int idade;
     char rg[rg_size];
     struct Data entrada;
@@ -52,6 +52,11 @@ typedef struct ABB{
     EABB *raiz;
     int qtd;
 } ABB;
+
+typedef struct Pilha{
+    char operacao[CHAR_SIZE];
+    struct Data data;
+} Pilha;
 
 int main(void) {
     return 0;
