@@ -13,7 +13,7 @@ typedef struct Registro {
     char name[name_size];
     int idade;
     char rg[rg_size];
-    Data entrada;
+    struct Data entrada;
 } Registro;
 
 typedef struct Lista {
