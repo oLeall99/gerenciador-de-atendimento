@@ -26,10 +26,14 @@ void menu() {
 
 void sobre() {
     printf("\n╔════════════════════════════════════╗");
-    printf("\n║             Sobre                  ║");
+    printf("\n║         Sobre o Projeto            ║");
     printf("\n╠════════════════════════════════════╣");
     printf("\n║ Desenvolvido por:                  ║");
     printf("\n║ Arthur Leal Mussio - 22.223.017-9  ║");
+    printf("\n║                                    ║");
+    printf("\n║ Estrutura de dados - 4º Semestre   ║");
+    printf("\n║ Ciência da Computação - FEI        ║");
+    printf("\n║ 2025                               ║");
     printf("\n╚════════════════════════════════════╝\n");
 }
 
