@@ -1,35 +1,47 @@
 #ifndef STACK_H
 #define STACK_H
 
-#include "paciente.h"
-#include "queue.h"
+// Forward declaration to avoid circular dependency
+struct PacienteList;
+struct Queue;
+struct Paciente;
 
-// Estrutura da celula da pilha
-typedef struct Cell {
-    Paciente *data;
+// Renamed the struct to avoid conflict with the typedef
+typedef struct StackCell {
+    struct Paciente *data;
     char operation;
-    struct Cell *prev;
-    struct Cell *next;
+    struct StackCell *prev;
+    struct StackCell *next;
 } Cell;
 
-// Estrutura da pilha
-typedef struct {
+// Changed to use named struct to match forward declaration in paciente.h
+typedef struct Stack {
     Cell *top;
     int size;
 } Stack;
 
+// Cria uma pilha
+Stack *createStack();
+
+// Cria uma célula para a pilha
+Cell *createCell(struct Paciente *paciente, char operation);
+
 // Insere na pilha
-void push(Stack *stack, Paciente *paciente, char operation);
+void push(Stack *stack, struct Paciente *paciente, char operation);
 
 // Remove da pilha
 Cell *pop(Stack *stack);
 
+// Adiciona paciente à lista sem registrar na pilha
+void addPacienteToList(struct PacienteList *list, struct Paciente *paciente);
+
+// Remove paciente da lista sem registrar na pilha
+void removePacienteFromList(struct PacienteList *list, char rg[]);
+
 // Desfaz a ultima operacao
-void undo(Queue *queue, Stack *stack);
+void undo(struct Queue *queue, Stack *stack, struct PacienteList *list);
 
 // Imprime a pilha
 void printStack(Stack *stack);
-
-Stack *createStack();
 
 #endif

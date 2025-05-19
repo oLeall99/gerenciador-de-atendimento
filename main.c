@@ -51,7 +51,7 @@ int main() {
 
         switch (opt) {
             case 1:
-                menuPacientes(list);
+                menuPacientes(list, stack);
                 break;
             case 2:
                 menuQueue(list, queue, stack);
@@ -63,7 +63,7 @@ int main() {
                 searchTreeMenu(list);
                 break;
             case 5:
-                undo(queue, stack);
+                undo(queue, stack, list);
                 break;
             case 6:
                 menuSave(list);

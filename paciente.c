@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "func/paciente.h"
+#include "func/stack.h"
 
 // Cria uma nova lista vazia
 PacienteList *createPacienteList() {
@@ -25,7 +26,7 @@ Date *createDate(int day, int month, int year) {
 }
 
 // Cria um novo paciente e insere no início da lista
-Paciente *createPaciente(PacienteList *list, char name[], int age, char rg[], int day, int month, int year) {
+Paciente *createPaciente(PacienteList *list, char name[], int age, char rg[], int day, int month, int year, Stack *stack) {
     if (list == NULL) return NULL;
 
     EList *new = (EList*) malloc(sizeof(EList));
@@ -51,6 +52,10 @@ Paciente *createPaciente(PacienteList *list, char name[], int age, char rg[], in
     new->next = list->init;
     list->init = new;
     list->size++;
+
+    if (stack != NULL) {
+        push(stack, new->data, 'A'); // 'A' para Adição
+    }
 
     return new->data;
 }
@@ -127,7 +132,7 @@ void updatePaciente(PacienteList *list, char rg[], char newName[], int newAge) {
 }
 
 // Remove paciente pelo RG
-void removePacienteByRG(PacienteList *list, char rg[]) {
+void removePacienteByRG(PacienteList *list, char rg[], Stack *stack) {
     if (list == NULL || list->init == NULL) return;
 
     EList *current = list->init;
@@ -145,14 +150,17 @@ void removePacienteByRG(PacienteList *list, char rg[]) {
         return;
     }
 
+    // Registrar a operação na pilha para possível desfazer
+    if (stack != NULL) {
+        push(stack, current->data, 'R'); // 'R' para Remoção
+    }
+
     if (previous == NULL) {
         list->init = current->next;
     } else {
         previous->next = current->next;
     }
 
-    free(current->data->entry);
-    free(current->data);
     free(current);
     list->size--;
 
@@ -161,7 +169,7 @@ void removePacienteByRG(PacienteList *list, char rg[]) {
     printf("\n╚════════════════════════════════════╝\n");
 }
 
-void menuPacientes(PacienteList* list) {
+void menuPacientes(PacienteList* list, Stack *stack) {
     int opcao;
     do {
         printf("\n╔════════════════════════════════════╗");
@@ -216,7 +224,7 @@ void menuPacientes(PacienteList* list) {
                 token = strtok(NULL, "/");
                 if (token != NULL) ano = atoi(token);
                 
-                if (createPaciente(list, nome, idade, rg, dia, mes, ano)) {
+                if (createPaciente(list, nome, idade, rg, dia, mes, ano, stack)) {
                     printf("\n╔════════════════════════════════════╗");
                     printf("\n║  ! Paciente cadastrado com sucesso ║");
                     printf("\n╚════════════════════════════════════╝\n");
@@ -281,7 +289,7 @@ void menuPacientes(PacienteList* list) {
                 fgets(rg, sizeof(rg), stdin);
                 rg[strcspn(rg, "\n")] = 0;
 
-                removePacienteByRG(list, rg);
+                removePacienteByRG(list, rg, stack);
                 break;
 
             case 0:

@@ -7,6 +7,9 @@
 
 #define SIZE_NAME 100
 
+// Forward declaration with consistent struct name
+struct Stack;
+
 // Estrutura de Data
 typedef struct {
     int day;
@@ -15,7 +18,7 @@ typedef struct {
 } Date;
 
 // Estrutura de Paciente
-typedef struct {
+typedef struct Paciente {
     char name[SIZE_NAME];
     char rg[20];
     int age;
@@ -29,7 +32,7 @@ typedef struct EList {
 } EList;
 
 // Lista Encadeada de pacientes
-typedef struct {
+typedef struct PacienteList {
     EList *init;
     int size;
 } PacienteList;
@@ -41,7 +44,7 @@ PacienteList *createPacienteList();
 Date *createDate(int day, int mouth, int year);
 
 // Criar paciente
-Paciente *createPaciente(PacienteList* list, char name[], int age, char rg[], int day, int month, int year);
+Paciente *createPaciente(PacienteList* list, char name[], int age, char rg[], int day, int month, int year, struct Stack *stack);
 
 // Consultar Paciente pelo RG
 Paciente *searchPacienteByRG(PacienteList* list, char rg[]);
@@ -50,11 +53,11 @@ Paciente *searchPacienteByRG(PacienteList* list, char rg[]);
 void printList(PacienteList* list);
 
 // Remover paciente pelo RG
-void removePacienteByRG(PacienteList* list, char rg[]);
+void removePacienteByRG(PacienteList* list, char rg[], struct Stack *stack);
 
 // Atualizar os dados de um paciente
 void updatePaciente(PacienteList* list, char rg[], char newName[], int newAge);
 
-void menuPacientes(PacienteList* list);
+void menuPacientes(PacienteList* list, struct Stack *stack);
 
 #endif
