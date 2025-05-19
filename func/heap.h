@@ -1,29 +1,15 @@
-#ifdef HEAP_H
+#ifndef HEAP_H
 #define HEAP_H
 
 #include "paciente.h"
 
-#define  MAX_SIZE_HEAP 200
-
-// Estrutura do HEAP
 typedef struct {
-    Paciente *pacientes[MAX_SIZE_HEAP];
+    Paciente **data;
     int size;
+    int capacity;
 } Heap;
 
-//Cria um novo Heap
-Heap *createHeap(int capacidade);
-
-//Insere um valor no heap
-int insertHeap(Heap *heap, Paciente *paciente);
-
-//Remove valor do heap
-Paciente *removeHeap(Heap *heap);
-
-//Mostra os valores do heap
-void showHeap(Heap *heap);
-
-//Libera o Heap
-void freeHeap(Heap *heap);
+Heap *createHeap(int capacity);
+void menuHeap(PacienteList *list, Heap *heap);
 
 #endif

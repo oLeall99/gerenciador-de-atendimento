@@ -3,7 +3,7 @@
 #include "func/save.h"
 
 void savePacientesFile(PacienteList *list) {
-    FILE *file = fopen("Dados.txt", "w");
+    FILE *file = fopen("data.txt", "w");
     if (file == NULL) {
         printf("\n╔════════════════════════════════════╗");
         printf("\n║           Erro no Sistema          ║");
@@ -28,12 +28,12 @@ void savePacientesFile(PacienteList *list) {
     printf("\n║           Sistema de Dados         ║");
     printf("\n╠════════════════════════════════════╣");
     printf("\n║    Dados salvos com sucesso em     ║");
-    printf("\n║            Dados.txt               ║");
+    printf("\n║            data.txt                ║");
     printf("\n╚════════════════════════════════════╝\n");
 }
 
 void loadPacientesFile(PacienteList *list) {
-    FILE *file = fopen("Dados.txt", "r");
+    FILE *file = fopen("data.txt", "r");
     if (file == NULL) {
         printf("\n╔════════════════════════════════════╗");
         printf("\n║           Erro no Sistema          ║");
@@ -66,7 +66,7 @@ void loadPacientesFile(PacienteList *list) {
     printf("\n║           Sistema de Dados         ║");
     printf("\n╠════════════════════════════════════╣");
     printf("\n║    Dados carregados com sucesso    ║");
-    printf("\n║         do arquivo Dados.txt       ║");
+    printf("\n║         do arquivo data.txt        ║");
     printf("\n╚════════════════════════════════════╝\n");
 }
 

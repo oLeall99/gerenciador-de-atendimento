@@ -5,11 +5,11 @@
 #include "queue.h"
 
 // Estrutura da celula da pilha
-typedef struct cell {
-    struct cell *next;
-    struct cell *prev;
-    Paciente *paciente;
+typedef struct Cell {
+    Paciente *data;
     char operation;
+    struct Cell *prev;
+    struct Cell *next;
 } Cell;
 
 // Estrutura da pilha
@@ -19,15 +19,17 @@ typedef struct {
 } Stack;
 
 // Insere na pilha
-void *push(Stack *stack, Paciente *paciente, char operation);
+void push(Stack *stack, Paciente *paciente, char operation);
 
 // Remove da pilha
-void *pop(Stack *stack);
+Cell *pop(Stack *stack);
 
 // Desfaz a ultima operacao
-void *undo(Stack *stack);
+void undo(Queue *queue, Stack *stack);
 
 // Imprime a pilha
 void printStack(Stack *stack);
+
+Stack *createStack();
 
 #endif

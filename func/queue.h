@@ -1,31 +1,26 @@
 #ifndef QUEUE_H
 #define QUEUE_H
 
-typedef struct Stack Stack;
+#include "paciente.h"
 
-typedef struct EQueue {
-    Paciente *paciente;
-    struct EQueue *next;
-} EQueue;
+typedef struct Queue Queue;
+typedef struct EQueue EQueue;
 
+struct EQueue {
+    Paciente *data;
+    EQueue *next;
+};
 
-typedef struct Queue {
-    EQueue *head;
-    EQueue *tail;
+struct Queue {
+    EQueue *init;
+    EQueue *end;
     int size;
-} Queue;
+};
 
-// Criar Fila
 Queue *createQueue();
-
-// Enfileirar Fila com um valor
-int enqueue(Queue *queue, Paciente *paciente, Stack *stack, int flag);
-
-// Desenfileirar um valor da Fila
-Paciente *dequeue(Queue *queue, Stack *stack, int flag);
-
-// Imprimir Fila
+void enqueue(Queue *queue, Paciente *paciente, void *stack, int log);
+Paciente *dequeue(Queue *queue, void *stack, int log);
 void printQueue(Queue *queue);
-
+void menuQueue(PacienteList *list, Queue *queue, void *stack);
 
 #endif

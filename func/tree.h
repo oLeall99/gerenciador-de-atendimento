@@ -11,7 +11,7 @@ typedef struct Node {
 } Node;
 
 // Estrutura da arvore
-typedef struct Tree {
+typedef struct {
     Node *root;
     int size;
 } Tree;
@@ -39,5 +39,7 @@ void printTree(Tree *tree);
 
 // Menu de opções de pesquisa
 void searchTreeMenu(PacienteList *list);
+
+void menuTree(PacienteList *list);
 
 #endif

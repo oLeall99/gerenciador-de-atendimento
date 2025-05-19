@@ -8,18 +8,18 @@
 #define SIZE_NAME 100
 
 // Estrutura de Data
-typedef struct DATE {
+typedef struct {
     int day;
     int month;
     int year;
-} DATE;
+} Date;
 
 // Estrutura de Paciente
-typedef struct Paciente {
-    char rg[15];
-    char nome[SIZE_NAME];
+typedef struct {
+    char name[SIZE_NAME];
+    char rg[20];
     int age;
-    Data *entry;
+    Date *entry;
 } Paciente;
 
 // Estrutura de uma celula da lista encadeada
@@ -29,7 +29,7 @@ typedef struct EList {
 } EList;
 
 // Lista Encadeada de pacientes
-typedef struct PacienteList {
+typedef struct {
     EList *init;
     int size;
 } PacienteList;
@@ -41,18 +41,20 @@ PacienteList *createPacienteList();
 Date *createDate(int day, int mouth, int year);
 
 // Criar paciente
-Paciente *createPaciente(ListaPacientes* list, char name[], int age, char rg[], int age, int day, int mouth, int year);
+Paciente *createPaciente(PacienteList* list, char name[], int age, char rg[], int day, int month, int year);
 
 // Consultar Paciente pelo RG
-Paciente *searchPacienteByRG(ListaPacientes* list, char rg[]);
+Paciente *searchPacienteByRG(PacienteList* list, char rg[]);
 
 // Mostrar os dados de todos os pacientes
-void printList(ListaPacientes* list);
+void printList(PacienteList* list);
 
 // Remover paciente pelo RG
-void removePacienteByRG(ListaPacientes* list, char rg[]);
+void removePacienteByRG(PacienteList* list, char rg[]);
 
 // Atualizar os dados de um paciente
-void updatePaciente(ListaPacientes* list, char rg[], char newName[], int newAge);
+void updatePaciente(PacienteList* list, char rg[], char newName[], int newAge);
+
+void menuPacientes(PacienteList* list);
 
 #endif
