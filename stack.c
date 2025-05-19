@@ -96,7 +96,7 @@ void undo(Queue *queue, Stack *stack) {
     printf("\n║ Nome: %-28s ║", p->name);
     printf("\n║ Idade: %-27d ║", p->age);
     printf("\n║ RG: %-30s ║", p->rg);
-    printf("\n║ Data de entrada: %02d/%02d/%04d         ║", 
+    printf("\n║ Data de entrada: %02d/%02d/%04d        ║", 
            p->entry->day, 
            p->entry->month, 
            p->entry->year);
