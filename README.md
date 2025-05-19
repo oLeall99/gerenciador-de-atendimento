@@ -58,13 +58,6 @@ O objetivo principal é demonstrar a implementação e utilização eficiente de
   - Importação de dados
   - Exportação de registros
 
-### ℹ️ Informações do Projeto
-- Detalhes do desenvolvimento:
-  - Desenvolvedor
-  - Período
-  - Instituição
-  - Disciplina
-
 ---
 
 ## 🏗️ Arquitetura do Sistema
